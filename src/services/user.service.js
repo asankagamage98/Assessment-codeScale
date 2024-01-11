@@ -6,7 +6,6 @@ const create = async (userdata) => {
   const { name, email, password, location } = userdata;
 
   try {
-    console.log("Request Data:", { name, email, password, location });
     const weatherData = await getWeatherDataFromAPI(location);
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -15,10 +14,10 @@ const create = async (userdata) => {
       email,
       password: hashedPassword,
       location,
-      weatherData: [{...weatherData, createdAt: new Date()}],
+      weatherData: [weatherData],
     }).save();
 
-    return user
+    return user;
   } catch (error) {
     console.error("Error creating user:", error.message);
     res.status(500).json({ error: "Internal Server Error" });
@@ -40,13 +39,24 @@ const getWeatherDataFromAPI = async (location) => {
 
     const temperature = weatherData.main.temp;
     const weatherCondition = weatherData.weather[0].main;
+    const currentDate = new Date();
 
-    return { temperature, weatherCondition };
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth() + 1;
+    const day = currentDate.getDate();
+
+    const fullDate = `${year}-${month < 10 ? "0" : ""}${month}-${
+      day < 10 ? "0" : ""
+    }${day}`;
+
+    return { temperature, weatherCondition, date: fullDate };
   } catch (error) {
     console.error("Error fetching weather data:", error.message);
     throw new Error("Unable to fetch weather data");
   }
 };
+
+// podi welawak hitpn mm meka blnna chat gpt dala
 
 module.exports = {
   create,

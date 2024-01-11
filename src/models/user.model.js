@@ -23,6 +23,7 @@ const userSchema = new Schema({
     {
       temperature: Number,
       weatherCondition: String,
+      date: String
     },
   ],
 });
