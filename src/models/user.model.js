@@ -1,17 +1,30 @@
-const mongoose = require('mongoose');
-const Schema   =  mongoose.Schema;
+const { Schema, default: mongoose, model } = require("mongoose");
 
-const userSchema = new  Schema({
-  email: { 
-    type: String, 
-    required: true 
+const userSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
   },
-
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
   location: {
-     type: String,
-     required: true
+    type: String,
+    required: true,
   },
+  weatherData: [
+    {
+      temperature: Number,
+      weatherCondition: String,
+    },
+  ],
 });
-
-const user = mongoose.model('User', userSchema);
-module.exports = user;
+const User = mongoose.model("User", userSchema);
+module.exports = User;

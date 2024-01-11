@@ -1,21 +1,22 @@
-require('dotenv').config();
+require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
-const { dbConnect } = require('./utils/dbConnection');
-const bodyparser = require("body-parser");
+const { dbConnect } = require("./utils/dbConnection");
+const bodyParser = require("body-parser");
 
-// const userRouter = require("./routes/user.router");
+const userRouter = require("./routes/user.router");
 
-App = express();
+app = express();
 
-App.use(cors());
-App.use(bodyparser.json());
+app.use(cors());
+app.use(bodyParser.json());
 
-// App.use("/api/user", userRouter);
+app.use("/api/user", userRouter);
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
-App.listen(PORT, () => {
-    console.log(`Backend running on http://localhost:${PORT}`);
-    dbConnect();
+app.listen(PORT, () => {
+  console.log(`Backend running on http://localhost:${PORT}`);
+  dbConnect();
 });
