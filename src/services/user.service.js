@@ -24,6 +24,18 @@ const create = async (userdata) => {
   }
 };
 
+const update = async (id, data) => {
+  try {
+    let user = await User.findByIdAndUpdate(id, data);
+    user = await User.findById(id);
+
+    return user;
+  } catch (error) {
+    console.error("Error creating user:", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 const getWeatherDataFromAPI = async (location) => {
   try {
     const apiKey = process.env.OPENWEATHERMAP_API_KEY;
@@ -49,16 +61,40 @@ const getWeatherDataFromAPI = async (location) => {
       day < 10 ? "0" : ""
     }${day}`;
 
-    return { temperature, weatherCondition, date: fullDate };
+    return { temperature, weatherCondition, date: fullDate, location };
   } catch (error) {
     console.error("Error fetching weather data:", error.message);
     throw new Error("Unable to fetch weather data");
   }
 };
 
-// podi welawak hitpn mm meka blnna chat gpt dala
+const getUserByWeatherDate = async (date) => {
+  try {
+    const users = await User.find();
+
+    const usersWithFilteredData = users.map((user) => {
+      const filteredWeatherData = user.weatherData.filter(
+        (data) => data.date === date
+      );
+
+      return {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        location: user.location,
+        weatherData: filteredWeatherData,
+      };
+    });
+
+    return usersWithFilteredData;
+  } catch (error) {
+    throw new Error("Error retrieving users by date");
+  }
+};
 
 module.exports = {
   create,
+  update,
   getWeatherDataFromAPI,
+  getUserByWeatherDate,
 };
