@@ -21,7 +21,7 @@ app.use("/api/user", userRouter);
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log(`Backend running on http://localhost:${PORT}`);
+  console.info(`Backend running on http://localhost:${PORT}`);
   dbConnect();
   // require("./src/utils/scheduler.util")();
 });
