@@ -1,6 +1,7 @@
 const User = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const fetch = require("node-fetch");
+const nodemailer = require("nodemailer")
 
 const create = async (userdata) => {
   const { name, email, password, location } = userdata;
@@ -20,7 +21,17 @@ const create = async (userdata) => {
     return user;
   } catch (error) {
     console.error("Error creating user:", error.message);
-    res.status(500).json({ error: "Internal Server Error" });
+    throw error;
+  }
+};
+
+const getAllUsers = async () => {
+  try {
+    const users = await User.find();
+    return users;
+  } catch (error) {
+    console.error("Error getting all users:", error.message);
+    throw new Error("Internal Server Error");
   }
 };
 
@@ -92,9 +103,44 @@ const getUserByWeatherDate = async (date) => {
   }
 };
 
+const sendWeatherReportToAllUsers = async () => {
+  try {
+    // Create a Nodemailer transporter using SMTP
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USERNAME,
+        pass: process.env.EMAIL_PASSWORD,
+      },
+    });
+
+    const allUsers = await getAllUsers();
+    allUsers.forEach(async (user) => {
+      let weatherData = await getWeatherDataFromAPI(user?.location);
+
+      // Compose the email
+      const mailOptions = {
+        from: process.env.EMAIL_USERNAME,
+        to: user?.email,
+        subject: "Hourly Weather Report",
+        text: `Hourly Weather Report:\nTemperature: ${weatherData.temperature}\nWeather Condition: ${weatherData.weatherCondition}`,
+      };
+
+      // Send the email
+      transporter.sendMail(mailOptions);
+    });
+
+    console.log("Hourly weather reports sent successfully!");
+  } catch (error) {
+    console.error("Error sending hourly weather report:", error.message);
+  }
+};
+
 module.exports = {
   create,
   update,
+  getAllUsers,
   getWeatherDataFromAPI,
   getUserByWeatherDate,
+  sendWeatherReportToAllUsers,
 };
