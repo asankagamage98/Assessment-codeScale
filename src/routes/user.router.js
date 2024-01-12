@@ -3,6 +3,18 @@ const { login,validateToken } = require("../services/auth.service");
 
 const router = require("express").Router();
 
+//api helth check
+router.get("/hello", (req, res) => {
+    let cars = [
+        { id: 1, name: "BMW" },
+        { id: 2, name: "Audi" },
+        { id: 3, name: "Ferrari" },
+      ];
+    
+    //   res.json();
+    res.json(cars).status(200);
+})
+
 //athenticate the routes from  jwt athentication
 //login route
 router.post("/login", login);
