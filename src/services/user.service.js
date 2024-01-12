@@ -3,6 +3,8 @@ const bcrypt = require("bcrypt");
 const fetch = require("node-fetch");
 const nodemailer = require("nodemailer")
 
+
+//user create service
 const create = async (userdata) => {
   const { name, email, password, location } = userdata;
 
@@ -25,6 +27,8 @@ const create = async (userdata) => {
   }
 };
 
+
+//get all users 
 const getAllUsers = async () => {
   try {
     const users = await User.find();
@@ -35,6 +39,7 @@ const getAllUsers = async () => {
   }
 };
 
+//update user location service
 const update = async (id, data) => {
   try {
     let user = await User.findByIdAndUpdate(id, data);
@@ -47,6 +52,7 @@ const update = async (id, data) => {
   }
 };
 
+//get weather service
 const getWeatherDataFromAPI = async (location) => {
   try {
     const apiKey = process.env.OPENWEATHERMAP_API_KEY;
@@ -79,6 +85,7 @@ const getWeatherDataFromAPI = async (location) => {
   }
 };
 
+//get weather from  given date
 const getUserByWeatherDate = async (date) => {
   try {
     const users = await User.find();
@@ -103,6 +110,8 @@ const getUserByWeatherDate = async (date) => {
   }
 };
 
+
+//send weather report service
 const sendWeatherReportToAllUsers = async () => {
   try {
     // Create a Nodemailer transporter using SMTP

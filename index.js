@@ -26,4 +26,3 @@ app.listen(PORT, () => {
   require("./src/utils/scheduler.util")();
 });
 
-// run schedular

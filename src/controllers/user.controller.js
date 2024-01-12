@@ -1,8 +1,6 @@
 const userService = require("../services/user.service");
-const bcrypt = require("bcrypt");
-const fetch = require("node-fetch");
-const yup = require("yup");
 
+ // Create a new user 
 const create = async (req, res) => {
   try {
     const user = await userService.create(req?.body);
@@ -14,10 +12,13 @@ const create = async (req, res) => {
   }
 };
 
+//update user location
 const locationUpdate = async (req, res) => {
   try {
     const { id } = req.params;
-    const user = await userService.update(id, {location: req?.body?.location});
+    const user = await userService.update(id, {
+      location: req?.body?.location,
+    });
 
     res.status(201).json(user);
   } catch (error) {
@@ -26,6 +27,7 @@ const locationUpdate = async (req, res) => {
   }
 };
 
+//get weather from given date
 const getUserByWeatherDate = async (req, res) => {
   try {
     const date = req.params.date;
@@ -46,5 +48,5 @@ const getUserByWeatherDate = async (req, res) => {
 module.exports = {
   create,
   locationUpdate,
-  getUserByWeatherDate
+  getUserByWeatherDate,
 };
