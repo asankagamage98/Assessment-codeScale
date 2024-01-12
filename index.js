@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/user", userRouter);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
   console.info(`Backend running on http://localhost:${PORT}`);

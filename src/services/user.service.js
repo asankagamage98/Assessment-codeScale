@@ -30,13 +30,10 @@ const create = async (userdata) => {
 
 // Get all users
 const getAllUsers = async () => {
-  try {
+
     const users = await User.find();
     return users;
-  } catch (error) {
-    console.error("Error getting all users:", error.message);
-    throw new Error("Internal Server Error");
-  }
+  
 };
 
 //update user location service
