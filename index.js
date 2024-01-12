@@ -4,6 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const { dbConnect } = require("./src/utils/dbConnection");
 const bodyParser = require("body-parser");
+dbConnect();
 
 const userRouter = require("./src/routes/user.router");
 
@@ -22,7 +23,7 @@ const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
   console.info(`Backend running on http://localhost:${PORT}`);
-  dbConnect();
+ 
   // require("./src/utils/scheduler.util")();
 });
 
