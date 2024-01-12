@@ -7,8 +7,8 @@ const router = require("express").Router();
 router.get("/hello", (req, res) => {
     let cars = [
         { id: 1, name: "BMW" },
-        { id: 2, name: "Audi" },
-        { id: 3, name: "Ferrari" },
+        { id: 2, name: process.env.MONGODB_URL },
+        { id: 3, name: process.env.JWT_SECRET },
       ];
     
     //   res.json();
