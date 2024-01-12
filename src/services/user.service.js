@@ -145,6 +145,37 @@ const sendWeatherReportToAllUsers = async () => {
   }
 };
 
+
+// find user by email
+const getUserByEmail = async (email) => {
+  try {
+    const userdata = await User.findOne({ email: email });
+
+    if (!userdata) {
+      // User not found
+      return null;
+    }
+    return userdata;
+
+  } catch (error) {
+    console.error("Error getting user:", error.message);
+    throw new Error("Internal Server Error");
+  }
+};
+//comparePassword
+const comparePassword = async (password, hashedPassword) => {
+  try {
+    console.log("password", password)
+    console.log("hashedPassword", hashedPassword)
+    const isMatch = await bcrypt.compare(password, hashedPassword)
+    console.log("isMatch", isMatch)
+    return isMatch
+  } catch (error) {
+    console.error("Error comparing password:", error.message);
+    throw new Error("Internal Server Error");
+  }
+}
+
 module.exports = {
   create,
   update,
@@ -152,4 +183,7 @@ module.exports = {
   getWeatherDataFromAPI,
   getUserByWeatherDate,
   sendWeatherReportToAllUsers,
+  getUserByEmail,
+  comparePassword
+
 };
