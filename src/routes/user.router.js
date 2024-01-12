@@ -13,6 +13,6 @@ router.put("/update/location/:id",validateToken, locationUpdate);
 // Route to get user details based on weather date
 router.get("/whether/:date",validateToken, getUserByWeatherDate);
 //Route to get all user details
-router.get("/getUsers",validateToken, getAllUsers);
+router.get("/", getAllUsers);
 
 module.exports = router;
