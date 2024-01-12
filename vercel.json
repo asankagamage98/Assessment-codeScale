@@ -13,7 +13,7 @@
     }
   ],
   "functions": {
-    "api/user": {
+    "api/user/**/*.js": {
       "maxDuration": 60
     }
   }
