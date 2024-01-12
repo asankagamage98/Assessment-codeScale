@@ -1,8 +1,4 @@
-const {
-  create,
-  locationUpdate,
-  getUserByWeatherDate,
-} = require("../controllers/user.controller");
+const {create,locationUpdate,getUserByWeatherDate,getAllUsers} = require("../controllers/user.controller");
 
 const router = require("express").Router();
 
@@ -12,5 +8,7 @@ router.post("/create", create);
 router.put("/update/location/:id", locationUpdate);
 // Route to get user details based on weather date
 router.get("/whether/:date", getUserByWeatherDate);
+//Route to get all user details
+router.get("/getUsers",getAllUsers);
 
 module.exports = router;

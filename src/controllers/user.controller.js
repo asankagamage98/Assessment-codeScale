@@ -45,8 +45,22 @@ const getUserByWeatherDate = async (req, res) => {
   }
 };
 
+// get all users
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await userService.getAllUsers();
+    res.status(200).json(users);
+  } catch (error) {
+    console.error("Error getting all users:", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+
+
 module.exports = {
   create,
   locationUpdate,
   getUserByWeatherDate,
+  getAllUsers
 };

@@ -28,7 +28,7 @@ const create = async (userdata) => {
 };
 
 
-//get all users 
+// Get all users
 const getAllUsers = async () => {
   try {
     const users = await User.find();
