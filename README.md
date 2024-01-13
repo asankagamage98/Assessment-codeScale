@@ -21,6 +21,15 @@ The Weather Report API is a Node.js application designed to store users' emails 
 Check out the live demo
 [here](https://assessment-code-scale-rb5678ch5-asankagamage98.vercel.app).
 
+Domains
+[here](https://assessment-code-scale.vercel.app/).
+[here](https://assessment-code-scale-git-main-asankagamage98.vercel.app/).
+[here](https://assessment-code-scale-rb5678ch5-asankagamage98.vercel.app/).
+
+
+assessment-code-scale-git-main-asankagamage98.vercel.app
+assessment-code-scale-rb5678ch5-asankagamage98.vercel.app
+
 ## Installation
 
 1. Clone the repository:
@@ -79,13 +88,13 @@ Routes marked as "authenticated" in the Endpoints section require a valid JWT to
 ## environment-variables
 
 PORT=3000
-
 MONGODB_URL=mongodb+srv://asanka:codeScale@cluster0.1vj0csi.mongodb.net/codescale-db?retryWrites=true&w=majority
 
 OPENWEATHERMAP_API_KEY=56d8453cda2e1f8b3cce5aaa186e3bc7
 
+
 EMAIL_USERNAME=madushanisuru646@gmail.com
 EMAIL_PASSWORD=usxa ryqf asrr uwms
 
-JWT_SECRET=secret
 
+JWT_SECRET=secret
