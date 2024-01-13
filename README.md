@@ -86,14 +86,13 @@ Routes marked as "authenticated" in the Endpoints section require a valid JWT to
 
 ## environment-variables
 
+```
 PORT=3000
-MONGODB_URL=mongodb+srv://asanka:codeScale@cluster0.1vj0csi.mongodb.net/codescale-db?retryWrites=true&w=majority
-
+# mongodb atlas connection string
+MONGODB_URL=
 OPENWEATHERMAP_API_KEY=56d8453cda2e1f8b3cce5aaa186e3bc7
-
-
-EMAIL_USERNAME=madushanisuru646@gmail.com
-EMAIL_PASSWORD=usxa ryqf asrr uwms
-
-
+# email (gmail) address and app key
+EMAIL_USERNAME=
+EMAIL_PASSWORD=
 JWT_SECRET=secret
+```
