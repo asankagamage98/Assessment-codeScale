@@ -10,8 +10,7 @@
 - [Endpoints](#endpoints)
 - [Authentication](#authentication)
 - [Environment variables](#environment-variables)
-- [Contributing](#contributing)
-- [License](#license)
+
 
 ## project-overview
 
