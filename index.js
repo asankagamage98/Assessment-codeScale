@@ -21,9 +21,10 @@ app.use("/api/user", userRouter);
 
 const PORT = process.env.PORT;
 
+require("./src/utils/scheduler.util")();
+
 app.listen(PORT, () => {
   console.info(`Backend running on http://localhost:${PORT}`);
- 
-  require("./src/utils/scheduler.util")();
 });
+
 
