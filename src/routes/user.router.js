@@ -19,7 +19,7 @@ router.get("/hello", (req, res) => {
 //login route
 router.post("/login", login);
 // Route to create a new user
-router.post("/create",validateToken, create);
+router.post("/create", create);
 // Route to update user location by ID
 router.put("/update/location/:id",validateToken, locationUpdate);
 // Route to get user details based on weather date
