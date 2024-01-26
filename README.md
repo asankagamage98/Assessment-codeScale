@@ -1,4 +1,4 @@
-# Assessment CodeScale
+# Node-Weather-API-Management
 
 
 ## Table of Contents
